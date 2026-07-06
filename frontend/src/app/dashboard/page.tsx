@@ -42,18 +42,14 @@ export default function DashboardPage() {
     )?.qualification ?? "-";
 
   const activeRatio =
-    data?.totals.faculty === 0
-      ? 0
-      : Math.round(
-          (data.totals.active /
-            data.totals.faculty) *
-            100
-        );
+  !data || data.totals.faculty === 0
+    ? 0
+    : Math.round(
+        (data.totals.active / data.totals.faculty) * 100
+      );
 
   const newThisMonth =
-    data?.monthlyJoinees[
-      data.monthlyJoinees.length - 1
-    ]?.count ?? 0;
+  data?.monthlyJoinees?.at(-1)?.count ?? 0;
 
   return (
     <DashboardLayout>
